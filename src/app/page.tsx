@@ -2,279 +2,360 @@
 
 import React, { useState } from 'react';
 
+// Sample properties data
+const PROPERTIES = [
+  {
+    id: 1,
+    location: 'Cancún, México',
+    distance: 'A 1,240 km de distancia',
+    dates: '12–17 de oct.',
+    price: 1850,
+    rating: 4.95,
+    image: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=600&q=80',
+    type: 'Villa frente al mar',
+  },
+  {
+    id: 2,
+    location: 'Valle de Bravo, México',
+    distance: 'A 120 km de distancia',
+    dates: '20–25 de sep.',
+    price: 2400,
+    rating: 4.88,
+    image: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=600&q=80',
+    type: 'Cabaña en el bosque',
+  },
+  {
+    id: 3,
+    location: 'Tulum, México',
+    distance: 'A 1,180 km de distancia',
+    dates: '5–10 de nov.',
+    price: 3100,
+    rating: 4.91,
+    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80',
+    type: 'Estudio selvático con piscina',
+  },
+  {
+    id: 4,
+    location: 'Oaxaca, México',
+    distance: 'A 450 km de distancia',
+    dates: '1–6 de dic.',
+    price: 1250,
+    rating: 4.97,
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80',
+    type: 'Loft de diseño en el centro',
+  },
+];
+
+const CATEGORIES = [
+  { id: 'beaches', label: 'Playas', icon: '🏝️' },
+  { id: 'cabins', label: 'Cabañas', icon: '🪵' },
+  { id: 'views', label: 'Vistas', icon: '🏔️' },
+  { id: 'pools', label: 'Piscinas', icon: '🏊' },
+  { id: 'trending', label: 'Tendencia', icon: '🔥' },
+];
+
 export default function Home() {
+  const [selectedCategory, setSelectedCategory] = useState('beaches');
+  const [selectedProperty, setSelectedProperty] = useState<typeof PROPERTIES[0] | null>(null);
   const [formData, setFormData] = useState({
-    destination: '',
     checkIn: '',
     checkOut: '',
     guests: '1',
-    roomType: 'standard',
     name: '',
     email: '',
-    notes: '',
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
-  ) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleBookingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
   };
 
+  const closeModal = () => {
+    setSelectedProperty(null);
+    setSubmitted(false);
+    setFormData({
+      checkIn: '',
+      checkOut: '',
+      guests: '1',
+      name: '',
+      email: '',
+    });
+  };
+
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 flex flex-col font-sans">
-      {/* Navigation Header */}
-      <nav className="border-b border-zinc-200 dark:border-zinc-900 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-500/30">
-              S
-            </div>
-            <span className="font-bold text-xl tracking-tight bg-gradient-to-r from-indigo-600 to-violet-600 dark:from-indigo-400 dark:to-violet-400 bg-clip-text text-transparent">
-              StayInn
+    <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans flex flex-col">
+      {/* Airbnb Style Header */}
+      <header className="border-b border-zinc-200 dark:border-zinc-900 bg-white/95 dark:bg-zinc-950/95 sticky top-0 z-40 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between gap-4">
+          {/* Logo */}
+          <div className="flex items-center gap-1.5 cursor-pointer">
+            <span className="text-[#FF385C] text-2xl">
+              <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" className="w-8 h-8 fill-current">
+                <path d="M16 1c2.008 0 3.463.963 4.751 3.269l.533.981 7.251 13.882c.245.466.38.988.397 1.523L29 21c0 5.068-3.924 9-8.995 9-.496 0-.986-.041-1.472-.121l-.225-.04c-.381-.073-.755-.172-1.121-.295l-.187-.066V26.5c0-2.115-1.554-3.791-3.613-3.978l-.193-.008c-2.115 0-3.791 1.554-3.978 3.613l-.008.193v2.98c-1.616.63-3.328.784-4.887.426l-.225-.054C5.924 29 2 25.068 2 20c0-.853.15-1.688.441-2.464l.088-.225 7.632-14.593C11.537 1.963 12.992 1 16 1zm0 2c-1.393 0-2.148.601-3.007 2.128l-.515.945L4.85 20.655c-.247.534-.35.91-.35 1.345 0 3.86 3.01 7 6.86 7 .696 0 1.398-.109 2.14-.336l.245-.078V26.5c0-3.181 2.378-5.801 5.437-5.986l.206-.008c3.181 0 5.801 2.378 5.986 5.437l.008.206v2.072c.677.202 1.343.31 2.015.326l.242.002c3.85 0 6.86-3.14 6.86-7 0-.442-.102-.82-.357-1.378L26.68 7.423l-.115-.224C25.688 5.602 24.933 5 23.54 5H16.03l-.03-.001V3zm0 13c1.933 0 3.5 1.567 3.5 3.5S17.933 23 16 23s-3.5-1.567-3.5-3.5 1.567-3.5 3.5-3.5zm0 2c-.828 0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5 1.5-.672 1.5-1.5-.672-1.5-1.5-1.5z"></path>
+              </svg>
+            </span>
+            <span className="font-bold text-xl tracking-tight text-[#FF385C] hidden sm:inline">
+              stayinn
             </span>
           </div>
-          <div className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
-            Reserva Fácil
+
+          {/* Search Pill */}
+          <div className="flex items-center border border-zinc-200 dark:border-zinc-800 rounded-full py-2 px-4 shadow-sm hover:shadow-md cursor-pointer transition-all gap-3 bg-white dark:bg-zinc-900">
+            <span className="text-xs sm:text-sm font-semibold px-2">En cualquier lugar</span>
+            <span className="w-[1px] h-4 bg-zinc-200 dark:bg-zinc-800"></span>
+            <span className="text-xs sm:text-sm font-semibold px-2">Cualquier semana</span>
+            <span className="w-[1px] h-4 bg-zinc-200 dark:bg-zinc-800"></span>
+            <span className="text-xs sm:text-sm text-zinc-400 dark:text-zinc-500 px-2">¿Cuántos?</span>
+            <div className="w-8 h-8 rounded-full bg-[#FF385C] flex items-center justify-center text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.637 10.637z" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Right actions */}
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-semibold hidden md:inline hover:bg-zinc-100 dark:hover:bg-zinc-900 py-2.5 px-4 rounded-full cursor-pointer transition-all">
+              Pon tu espacio en StayInn
+            </span>
+            <div className="flex items-center gap-3 border border-zinc-200 dark:border-zinc-800 rounded-full p-2 hover:shadow-md cursor-pointer transition-all bg-white dark:bg-zinc-900">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-zinc-500">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+              <div className="w-8 h-8 rounded-full bg-zinc-500 text-white flex items-center justify-center font-bold text-sm">
+                A
+              </div>
+            </div>
           </div>
         </div>
-      </nav>
+      </header>
 
-      {/* Main Container */}
-      <main className="flex-1 max-w-lg w-full mx-auto px-4 py-12 flex flex-col justify-center">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl bg-gradient-to-r from-zinc-900 to-zinc-600 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent">
-            Haz tu Reservación
-          </h1>
-          <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
-            Completa los detalles para reservar tu próxima gran experiencia.
-          </p>
+      {/* Categories Bar */}
+      <section className="border-b border-zinc-100 dark:border-zinc-900 bg-white dark:bg-zinc-950/50 sticky top-20 z-30">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex gap-8 overflow-x-auto scrollbar-none justify-start sm:justify-center">
+          {CATEGORIES.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setSelectedCategory(cat.id)}
+              className={`flex flex-col items-center gap-1.5 pb-2 border-b-2 transition-all cursor-pointer whitespace-nowrap px-1 ${
+                selectedCategory === cat.id
+                  ? 'border-zinc-900 dark:border-white text-zinc-900 dark:text-white font-medium'
+                  : 'border-transparent text-zinc-400 hover:text-zinc-600 hover:border-zinc-300 dark:text-zinc-500 dark:hover:text-zinc-300'
+              }`}
+            >
+              <span className="text-xl">{cat.icon}</span>
+              <span className="text-xs">{cat.label}</span>
+            </button>
+          ))}
         </div>
+      </section>
 
-        {/* Card */}
-        <div className="bg-white dark:bg-zinc-900/50 dark:backdrop-blur-md rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 shadow-xl p-6 sm:p-8 transition-all">
-          {submitted ? (
-            <div className="space-y-6">
-              <div className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-8 h-8">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+      {/* Main Grid Section */}
+      <main className="max-w-7xl mx-auto px-6 py-10 flex-1">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {PROPERTIES.map((prop) => (
+            <div
+              key={prop.id}
+              onClick={() => setSelectedProperty(prop)}
+              className="group cursor-pointer flex flex-col"
+            >
+              {/* Image Container */}
+              <div className="aspect-square w-full rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 relative">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={prop.image}
+                  alt={prop.location}
+                  className="object-cover w-full h-full group-hover:scale-105 transition-all duration-300"
+                  loading="lazy"
+                />
+                <button className="absolute top-3 right-3 text-white/90 hover:text-white transition-all">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-6 h-6 drop-shadow-md">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                   </svg>
-                </div>
-                <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">¡Reservación Confirmada!</h2>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Hemos recibido tus datos con éxito.</p>
+                </button>
               </div>
 
-              <div className="border-t border-b border-zinc-100 dark:border-zinc-800 py-4 my-6 space-y-3">
-                <div className="flex justify-between text-sm">
-                  <span className="text-zinc-500 dark:text-zinc-400">Destino/Hotel:</span>
-                  <span className="font-semibold text-zinc-800 dark:text-zinc-200">{formData.destination}</span>
+              {/* Property Details */}
+              <div className="mt-3 flex flex-col flex-1">
+                <div className="flex justify-between items-start gap-2">
+                  <h3 className="font-semibold text-sm text-zinc-900 dark:text-zinc-100">{prop.location}</h3>
+                  <span className="flex items-center gap-1 text-sm font-light text-zinc-800 dark:text-zinc-200">
+                    ★ {prop.rating}
+                  </span>
                 </div>
-                <div className="grid grid-cols-2 gap-4 pt-2 border-t border-zinc-50 dark:border-zinc-900">
-                  <div>
-                    <span className="block text-xs text-zinc-500 dark:text-zinc-400">Check-in:</span>
-                    <span className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">{formData.checkIn}</span>
-                  </div>
-                  <div>
-                    <span className="block text-xs text-zinc-500 dark:text-zinc-400">Check-out:</span>
-                    <span className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">{formData.checkOut}</span>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4 pt-2 border-t border-zinc-50 dark:border-zinc-900">
-                  <div>
-                    <span className="block text-xs text-zinc-500 dark:text-zinc-400">Huéspedes:</span>
-                    <span className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">{formData.guests}</span>
-                  </div>
-                  <div>
-                    <span className="block text-xs text-zinc-500 dark:text-zinc-400">Habitación:</span>
-                    <span className="text-sm font-semibold capitalize text-zinc-800 dark:text-zinc-200">{formData.roomType}</span>
-                  </div>
-                </div>
-                <div className="flex justify-between text-sm pt-2 border-t border-zinc-50 dark:border-zinc-900">
-                  <span className="text-zinc-500 dark:text-zinc-400">Huésped principal:</span>
-                  <span className="font-semibold text-zinc-800 dark:text-zinc-200">{formData.name}</span>
-                </div>
-                <div className="flex justify-between text-sm pt-1">
-                  <span className="text-zinc-500 dark:text-zinc-400">Email:</span>
-                  <span className="font-semibold text-zinc-800 dark:text-zinc-200">{formData.email}</span>
-                </div>
-                {formData.notes && (
-                  <div className="pt-2 border-t border-zinc-50 dark:border-zinc-900">
-                    <span className="block text-xs text-zinc-500 dark:text-zinc-400">Notas:</span>
-                    <p className="text-xs text-zinc-600 dark:text-zinc-400 italic mt-1 bg-zinc-50 dark:bg-zinc-900/80 p-2.5 rounded-lg border border-zinc-100 dark:border-zinc-800">{formData.notes}</p>
-                  </div>
-                )}
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">{prop.type}</p>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">{prop.distance}</p>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">{prop.dates}</p>
+                <p className="text-sm font-semibold mt-1.5 text-zinc-900 dark:text-zinc-100">
+                  ${prop.price.toLocaleString('es-MX')} MXN <span className="font-normal text-zinc-500 dark:text-zinc-400 text-xs">noche</span>
+                </p>
               </div>
-
-              <button
-                type="button"
-                onClick={() => setSubmitted(false)}
-                className="w-full py-3 px-4 rounded-xl bg-zinc-100 hover:bg-zinc-200 active:scale-[0.98] text-zinc-800 dark:bg-zinc-800 dark:hover:bg-zinc-700 dark:text-zinc-200 font-medium transition-all text-center cursor-pointer"
-              >
-                Hacer otra reservación
-              </button>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Destination */}
-              <div>
-                <label htmlFor="destination" className="block text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
-                  Destino o Hotel
-                </label>
-                <input
-                  type="text"
-                  id="destination"
-                  name="destination"
-                  placeholder="Ej. Hotel Paradiso, Cancún"
-                  value={formData.destination}
-                  onChange={handleChange}
-                  required
-                  className="w-full mt-1.5 px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/50 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm placeholder:text-zinc-400 dark:placeholder:text-zinc-600"
-                />
-              </div>
-
-              {/* Dates grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="checkIn" className="block text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
-                    Check-in
-                  </label>
-                  <input
-                    type="date"
-                    id="checkIn"
-                    name="checkIn"
-                    value={formData.checkIn}
-                    onChange={handleChange}
-                    required
-                    className="w-full mt-1.5 px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/50 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="checkOut" className="block text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
-                    Check-out
-                  </label>
-                  <input
-                    type="date"
-                    id="checkOut"
-                    name="checkOut"
-                    value={formData.checkOut}
-                    onChange={handleChange}
-                    required
-                    className="w-full mt-1.5 px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/50 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm"
-                  />
-                </div>
-              </div>
-
-              {/* Guests & Room Type */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="guests" className="block text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
-                    Huéspedes
-                  </label>
-                  <input
-                    type="number"
-                    id="guests"
-                    name="guests"
-                    min="1"
-                    value={formData.guests}
-                    onChange={handleChange}
-                    required
-                    className="w-full mt-1.5 px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/50 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="roomType" className="block text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
-                    Tipo de Habitación
-                  </label>
-                  <select
-                    id="roomType"
-                    name="roomType"
-                    value={formData.roomType}
-                    onChange={handleChange}
-                    className="w-full mt-1.5 px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/50 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm"
-                  >
-                    <option value="standard">Estándar</option>
-                    <option value="deluxe">Deluxe</option>
-                    <option value="suite">Suite Premium</option>
-                  </select>
-                </div>
-              </div>
-
-              {/* Name */}
-              <div>
-                <label htmlFor="name" className="block text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
-                  Nombre Completo
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Ej. Juan Pérez"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full mt-1.5 px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/50 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm placeholder:text-zinc-400 dark:placeholder:text-zinc-600"
-                />
-              </div>
-
-              {/* Email */}
-              <div>
-                <label htmlFor="email" className="block text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
-                  Correo Electrónico
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="ejemplo@email.com"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full mt-1.5 px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/50 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm placeholder:text-zinc-400 dark:placeholder:text-zinc-600"
-                />
-              </div>
-
-              {/* Notes */}
-              <div>
-                <label htmlFor="notes" className="block text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
-                  Notas Especiales
-                </label>
-                <textarea
-                  id="notes"
-                  name="notes"
-                  placeholder="Ej. Cuna para bebé, check-in tardío..."
-                  value={formData.notes}
-                  onChange={handleChange}
-                  rows={3}
-                  className="w-full mt-1.5 px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/50 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all text-sm placeholder:text-zinc-400 dark:placeholder:text-zinc-600 resize-none"
-                />
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                className="w-full mt-4 py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 active:scale-[0.98] text-white font-semibold transition-all shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/30 text-sm cursor-pointer"
-              >
-                Confirmar Reservación
-              </button>
-            </form>
-          )}
+          ))}
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-zinc-200 dark:border-zinc-900 bg-white dark:bg-zinc-950 py-6 mt-auto">
-        <div className="max-w-4xl mx-auto px-4 text-center text-xs text-zinc-400 dark:text-zinc-600">
-          &copy; {new Date().getFullYear()} StayInn Inc. Todos los derechos reservados.
+      {/* Reservation Modal (Airbnb Booking flow) */}
+      {selectedProperty && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+          <div className="bg-white dark:bg-zinc-900 w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-100 dark:border-zinc-800">
+              <h2 className="font-bold text-lg">Reserva en {selectedProperty.location.split(',')[0]}</h2>
+              <button
+                onClick={closeModal}
+                className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-zinc-100 dark:hover:bg-zinc-800 cursor-pointer"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-6">
+              {submitted ? (
+                <div className="text-center space-y-4 py-4">
+                  <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-8 h-8">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                  </div>
+                  <h3 className="font-bold text-xl">¡Reservación Confirmada!</h3>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 px-4">
+                    Tu solicitud para <strong>{selectedProperty.location}</strong> ha sido registrada. Te enviamos un email de confirmación a <strong>{formData.email}</strong>.
+                  </p>
+                  <button
+                    onClick={closeModal}
+                    className="w-full mt-6 py-2.5 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-zinc-900 text-white font-medium rounded-xl text-sm transition-all cursor-pointer"
+                  >
+                    Cerrar
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleBookingSubmit} className="space-y-4">
+                  {/* Info card of the listing inside form */}
+                  <div className="flex gap-4 p-3 rounded-xl bg-zinc-50 dark:bg-zinc-950 border border-zinc-100 dark:border-zinc-900 mb-4">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={selectedProperty.image}
+                      alt={selectedProperty.location}
+                      className="w-20 h-20 object-cover rounded-lg"
+                    />
+                    <div className="flex flex-col justify-center">
+                      <span className="text-xs text-zinc-400 dark:text-zinc-500 uppercase font-semibold">{selectedProperty.type}</span>
+                      <h4 className="font-bold text-sm text-zinc-800 dark:text-zinc-200">{selectedProperty.location}</h4>
+                      <span className="font-semibold text-xs mt-1 text-zinc-900 dark:text-zinc-100">${selectedProperty.price.toLocaleString('es-MX')} MXN / noche</span>
+                    </div>
+                  </div>
+
+                  {/* Dates grid */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label htmlFor="checkIn" className="block text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase">Check-in</label>
+                      <input
+                        type="date"
+                        id="checkIn"
+                        name="checkIn"
+                        value={formData.checkIn}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full mt-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded-lg bg-transparent text-xs focus:ring-1 focus:ring-[#FF385C] outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="checkOut" className="block text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase">Check-out</label>
+                      <input
+                        type="date"
+                        id="checkOut"
+                        name="checkOut"
+                        value={formData.checkOut}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full mt-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded-lg bg-transparent text-xs focus:ring-1 focus:ring-[#FF385C] outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Guests */}
+                  <div>
+                    <label htmlFor="guests" className="block text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase">Huéspedes</label>
+                    <input
+                      type="number"
+                      id="guests"
+                      name="guests"
+                      min="1"
+                      value={formData.guests}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full mt-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded-lg bg-transparent text-xs focus:ring-1 focus:ring-[#FF385C] outline-none"
+                    />
+                  </div>
+
+                  {/* Personal info */}
+                  <div>
+                    <label htmlFor="name" className="block text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase">Nombre del Huésped</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      placeholder="Ej. Juan Pérez"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full mt-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded-lg bg-transparent text-xs focus:ring-1 focus:ring-[#FF385C] outline-none placeholder:text-zinc-400 dark:placeholder:text-zinc-600"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase">Correo Electrónico</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      placeholder="ejemplo@email.com"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full mt-1 px-3 py-2 border border-zinc-200 dark:border-zinc-800 rounded-lg bg-transparent text-xs focus:ring-1 focus:ring-[#FF385C] outline-none placeholder:text-zinc-400 dark:placeholder:text-zinc-600"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full py-3 bg-[#FF385C] hover:bg-[#DE1243] text-white font-bold rounded-xl text-sm transition-all shadow-md shadow-rose-500/10 cursor-pointer mt-4"
+                  >
+                    Reservar ahora
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Simple Airbnb Style Footer */}
+      <footer className="border-t border-zinc-200 dark:border-zinc-900 bg-zinc-50 dark:bg-zinc-950 py-8 mt-auto">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-500 dark:text-zinc-400">
+          <div className="flex flex-wrap justify-center gap-3">
+            <span>&copy; {new Date().getFullYear()} StayInn, Inc.</span>
+            <span>·</span>
+            <a href="#" className="hover:underline">Privacidad</a>
+            <span>·</span>
+            <a href="#" className="hover:underline">Términos</a>
+            <span>·</span>
+            <a href="#" className="hover:underline">Mapa del sitio</a>
+          </div>
+          <div className="flex gap-4">
+            <span className="font-semibold cursor-pointer hover:underline flex items-center gap-1">🌐 Español (MX)</span>
+            <span className="font-semibold cursor-pointer hover:underline">MXN $</span>
+          </div>
         </div>
       </footer>
     </div>
