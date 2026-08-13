@@ -43,7 +43,7 @@ export function ListingGrid({ products, totalCount }: ListingGridProps) {
         </div>
 
         <span className="text-xs text-[#457b9d] font-bold hidden sm:inline-block">
-          Instanciados mediante <strong className="text-[#e63946] font-black">Factory Pattern</strong>
+          Garantía <strong className="text-[#e63946] font-black">StayInn Exclusive</strong>
         </span>
       </div>
 

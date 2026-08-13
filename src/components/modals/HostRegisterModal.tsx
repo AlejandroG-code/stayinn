@@ -91,7 +91,7 @@ export function HostRegisterModal({ isOpen, onClose, onAddProperty }: HostRegist
                 Registra tu Propiedad
                 <Sparkles className="w-4 h-4 text-[#e63946]" />
               </h3>
-              <p className="text-xs text-[#457b9d] font-bold">Publicación simulada para anfitriones</p>
+              <p className="text-xs text-[#457b9d] font-bold">Comienza a hospedar y generar ingresos</p>
             </div>
           </div>
 
@@ -112,7 +112,7 @@ export function HostRegisterModal({ isOpen, onClose, onAddProperty }: HostRegist
             <div>
               <h4 className="text-xl font-black text-[#1d3557]">¡Alojamiento Publicado!</h4>
               <p className="text-sm text-[#457b9d] font-bold mt-1">
-                La <strong className="text-[#e63946]">PropertyFactory</strong> ha instanciado correctamente tu propiedad en el Grid.
+                Tu propiedad se ha publicado correctamente en StayInn y ya está disponible para los huéspedes.
               </p>
             </div>
           </div>

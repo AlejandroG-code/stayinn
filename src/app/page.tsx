@@ -10,7 +10,7 @@ import { ListingGrid } from '@/components/accommodations/ListingGrid';
 import { HostRegisterModal } from '@/components/modals/HostRegisterModal';
 import { useHostModal } from '@/hooks/useHostModal';
 import { useProperties } from '@/hooks/useProperties';
-import { Layers, Code2 } from 'lucide-react';
+import { PlusCircle, Sparkles } from 'lucide-react';
 
 export default function HomePage() {
   const { isOpen, openModal, closeModal } = useHostModal();
@@ -39,8 +39,8 @@ export default function HomePage() {
           {/* Banner de Introducción */}
           <div className="pt-10 pb-4 text-center max-w-3xl mx-auto space-y-4">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#a8dadc]/40 border border-[#a8dadc] text-[#1d3557] text-xs font-black tracking-wide">
-              <Code2 className="w-4 h-4 text-[#e63946]" />
-              <span>Patrón de Diseño Factory Method • Vibrant MVP Palette</span>
+              <Sparkles className="w-4 h-4 text-[#e63946]" />
+              <span>Alojamientos Exclusivos & Escapadas Únicas</span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl font-black text-[#1d3557] tracking-tight leading-tight">
@@ -49,7 +49,7 @@ export default function HomePage() {
             </h1>
 
             <p className="text-sm sm:text-base text-[#457b9d] font-bold max-w-xl mx-auto">
-              Explora una selección curada de cabañas, villas frente al mar, mansiones luxury y glampings instanciados dinámicamente.
+              Explora una selección curada de cabañas, villas frente al mar, mansiones luxury y glampings únicos en todo el mundo.
             </p>
           </div>
 
@@ -67,20 +67,20 @@ export default function HomePage() {
             onSelectCategory={setSelectedCategory}
           />
 
-          {/* Listado de Alojamientos (Grid instanciado por la Factory) */}
+          {/* Listado de Alojamientos */}
           <ListingGrid
             products={filteredProducts}
             totalCount={totalCount}
           />
 
-          {/* Botón de TEST Solicitado (Strawberry Red) */}
+          {/* Botón CTA para Anfitriones */}
           <div className="my-14 flex justify-center">
             <button
               onClick={openModal}
               className="btn-strawberry px-8 py-4 text-white font-black text-sm flex items-center gap-3 shadow-xl hover:scale-105 active:scale-95 transition-all"
             >
-              <Layers className="w-5 h-5 text-white" />
-              <span>TEST: Probar Registro de Anfitrión</span>
+              <PlusCircle className="w-5 h-5 text-white" />
+              <span>Publicar mi Propiedad en StayInn</span>
             </button>
           </div>
 

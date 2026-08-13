@@ -5,9 +5,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "StayInn — Plataforma de Alojamientos Exclusivos & Reservaciones (MVP)",
-  description: "Plataforma de alquiler de alojamientos y reservaciones con arquitectura limpia, patrones de diseño (Factory Pattern) y diseño UI/UX premium.",
-  keywords: ["alojamiento", "alquiler", "cabañas", "frente al mar", "mansiones", "glamping", "stayinn", "factory pattern"]
+  title: "StayInn — Plataforma de Alojamientos Exclusivos & Reservaciones",
+  description: "Plataforma de alquiler de alojamientos exclusivos, reservaciones y escapadas únicas en todo el mundo.",
+  keywords: ["alojamiento", "alquiler", "cabañas", "frente al mar", "mansiones", "glamping", "stayinn"]
 };
 
 export default function RootLayout({
@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${inter.className} dark h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-slate-950 text-slate-100 selection:bg-indigo-500 selection:text-white">
+      <body className="min-h-full flex flex-col bg-[#f1faee] text-[#1d3557] selection:bg-[#e63946] selection:text-white">
         {children}
       </body>
     </html>

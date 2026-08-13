@@ -17,11 +17,11 @@ export function Footer() {
               <span className="text-xl font-black text-white tracking-tight">StayInn</span>
             </div>
             <p className="text-[#a8dadc] leading-relaxed font-bold">
-              La plataforma de alquiler de alojamientos y escapadas exclusivas. Construida con arquitectura limpia y patrones de diseño modernos.
+              La plataforma de alquiler de alojamientos y escapadas exclusivas. Vive experiencias únicas e inolvidables en todo el mundo.
             </p>
             <div className="flex items-center gap-2 text-white font-black pt-1">
               <Award className="w-4 h-4 text-[#e63946]" />
-              <span>MVP Vibrant Palette Architecture</span>
+              <span>Experiencias de Alquiler Únicas</span>
             </div>
           </div>
 
@@ -49,14 +49,14 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Columna 4: Legal & Tecnología */}
+          {/* Columna 4: Confianza y Garantías */}
           <div className="space-y-3">
-            <h4 className="text-xs font-black uppercase tracking-wider text-white">Patrón & Tecnologías</h4>
+            <h4 className="text-xs font-black uppercase tracking-wider text-white">Garantía StayInn</h4>
             <ul className="space-y-2 text-[#a8dadc]">
-              <li className="text-white font-black">• Factory Pattern (Registry)</li>
-              <li className="text-white font-black">• Strawberry Red & Space Blue Theme</li>
-              <li className="text-white font-black">• Next.js 16 App Router</li>
-              <li className="text-white font-black">• React 19 & TypeScript</li>
+              <li className="text-white font-black">• Reservas 100% Seguras</li>
+              <li className="text-white font-black">• Verificación de Anfitriones</li>
+              <li className="text-white font-black">• Cancelación Flexible</li>
+              <li className="text-white font-black">• Atención al Cliente 24/7</li>
               <li><a href="#" className="hover:text-white transition-colors">Términos y Privacidad</a></li>
             </ul>
           </div>
@@ -65,7 +65,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-[#457b9d]/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-[#a8dadc]">
-          <p>© 2026 StayInn, Inc. Todos los derechos reservados. Prototipo MVP UI.</p>
+          <p>© 2026 StayInn, Inc. Todos los derechos reservados.</p>
           <div className="flex items-center gap-6 text-white font-black">
             <span className="flex items-center gap-1.5 cursor-pointer hover:text-[#e63946]">
               <Globe className="w-4 h-4 text-[#a8dadc]" /> Español (CO)
