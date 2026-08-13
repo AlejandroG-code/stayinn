@@ -1,50 +1,183 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --strawberry-red: #e63946;
+    --honeydew: #f1faee;
+    --frosted-blue: #a8dadc;
+    --steel-blue: #457b9d;
+    --deep-space-blue: #1d3557;
+
+    --background: #f1faee;
+    --foreground: #1d3557;
+  }
+
+  body {
+    background-color: #f1faee;
+    color: #1d3557;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    overflow-x: hidden;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ============================================================
+   MODERN VIBRANT PALETTE DESIGN SYSTEM
+   Palette: Strawberry Red (#e63946), Honeydew (#f1faee),
+            Frosted Blue (#a8dadc), Steel Blue (#457b9d),
+            Deep Space Blue (#1d3557)
+   ============================================================ */
+
+/* Main Container / Panel */
+.palette-panel {
+  background: #ffffff;
+  border: 2px solid #a8dadc;
+  border-radius: 24px;
+  box-shadow: 0 12px 32px -8px rgba(29, 53, 87, 0.12);
 }
 
-
-header {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Card (Property Cards & Grid items) */
+.palette-card {
+  background: #ffffff;
+  border: 2px solid #f1faee;
+  border-radius: 22px;
+  box-shadow: 0 6px 24px rgba(29, 53, 87, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-nav {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  border-bottom: 1px solid var(--foreground);
+.palette-card:hover {
+  transform: translateY(-5px);
+  border-color: #a8dadc;
+  box-shadow: 0 18px 40px -8px rgba(29, 53, 87, 0.2);
 }
 
-footer {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Primary Strawberry Red Button (#e63946) */
+.btn-strawberry {
+  background-color: #e63946;
+  color: #ffffff;
+  border-radius: 9999px;
+  box-shadow: 0 4px 16px rgba(230, 57, 70, 0.35);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-strawberry:hover {
+  background-color: #d62839;
+  transform: translateY(-1.5px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(230, 57, 70, 0.45);
+}
+
+.btn-strawberry:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Steel Blue Button (#457b9d) */
+.btn-steel {
+  background-color: #457b9d;
+  color: #ffffff;
+  border-radius: 9999px;
+  box-shadow: 0 4px 14px rgba(69, 123, 157, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn-steel:hover {
+  background-color: #1d3557;
+  transform: translateY(-1px);
+}
+
+/* Pill / Category Button (Frosted Blue & Deep Space Blue) */
+.btn-frosted {
+  background-color: #f1faee;
+  color: #1d3557;
+  border: 2px solid #a8dadc;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+}
+
+.btn-frosted:hover {
+  background-color: #a8dadc;
+  color: #1d3557;
+  border-color: #457b9d;
+}
+
+.btn-frosted-active {
+  background-color: #1d3557;
+  color: #f1faee !important;
+  border-color: #1d3557;
+  box-shadow: 0 4px 16px rgba(29, 53, 87, 0.3);
+}
+
+/* Badges Palette */
+.badge-strawberry {
+  background-color: #e63946;
+  color: #ffffff;
+  border: 1px solid #e63946;
+}
+
+.badge-steel {
+  background-color: #457b9d;
+  color: #ffffff;
+  border: 1px solid #457b9d;
+}
+
+.badge-deep-space {
+  background-color: #1d3557;
+  color: #f1faee;
+  border: 1px solid #1d3557;
+}
+
+.badge-frosted {
+  background-color: #a8dadc;
+  color: #1d3557;
+  border: 1px solid #457b9d;
+}
+
+.badge-emerald {
+  background-color: #2a9d8f;
+  color: #ffffff;
+  border: 1px solid #2a9d8f;
+}
+
+.badge-amber {
+  background-color: #e9c46a;
+  color: #1d3557;
+  border: 1px solid #e9c46a;
+}
+
+/* Input Fields */
+.palette-input {
+  background-color: #ffffff;
+  border: 2px solid #a8dadc;
+  border-radius: 14px;
+  color: #1d3557;
+  transition: all 0.2s ease;
+}
+
+.palette-input:focus {
+  outline: none;
+  border-color: #457b9d;
+  box-shadow: 0 0 0 3px rgba(69, 123, 157, 0.2);
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1faee;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #a8dadc;
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #457b9d;
+}
+
+.text-vibrant-gradient {
+  background: linear-gradient(135deg, #e63946 0%, #457b9d 50%, #1d3557 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

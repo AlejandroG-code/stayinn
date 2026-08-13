@@ -1,0 +1,236 @@
+[
+  {
+    "id": "prop-001",
+    "title": "Cabaña Alpina Alpaca Peak",
+    "subtitle": "Espectacular cabaña con jacuzzi y chimenea a la leña",
+    "description": "Disfruta del bosque privado en una cabaña de madera rústica pero moderna con vistas impresionantes.",
+    "type": "cabin",
+    "pricePerNight": 145,
+    "currency": "USD",
+    "location": {
+      "address": "Km 12 Vía al Nevado",
+      "city": "Manizales",
+      "state": "Caldas",
+      "country": "Colombia",
+      "latitude": 4.813,
+      "longitude": -75.517
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=800&q=80"
+    ],
+    "reviews": {
+      "rating": 4.95,
+      "reviewCount": 84
+    },
+    "tags": ["Superhost", "Vista a la montaña", "Pet Friendly", "Jacuzzi privado"],
+    "amenities": ["Jacuzzi", "Chimenea", "Wi-Fi de alta velocidad", "Estacionamiento privado"],
+    "capacity": {
+      "maxGuests": 4,
+      "bedrooms": 2,
+      "beds": 2,
+      "bathrooms": 1
+    },
+    "isAvailable": true,
+    "featuredAttr": {
+      "woodType": "Pino Teja",
+      "hasHeating": true
+    }
+  },
+  {
+    "id": "prop-002",
+    "title": "Villa Brisa Marina & Private Beach",
+    "subtitle": "Acceso directo a la playa con piscina infinity",
+    "description": "Lujosa villa frente al mar Caribe con servicio de chef opcional y acceso exclusivo al mar.",
+    "type": "beach",
+    "pricePerNight": 320,
+    "currency": "USD",
+    "location": {
+      "address": "Playa Blanca Sector 3",
+      "city": "Barú",
+      "state": "Cartagena",
+      "country": "Colombia",
+      "latitude": 10.231,
+      "longitude": -75.612
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80"
+    ],
+    "reviews": {
+      "rating": 4.88,
+      "reviewCount": 142
+    },
+    "tags": ["Superhost", "Frente al mar", "Piscina privada", "Cancelación gratuita"],
+    "amenities": ["Piscina Infinity", "Muelle privado", "Aire Acondicionado", "Servicio de Chef"],
+    "capacity": {
+      "maxGuests": 8,
+      "bedrooms": 4,
+      "beds": 5,
+      "bathrooms": 4
+    },
+    "isAvailable": true,
+    "featuredAttr": {
+      "distanceToBeachMeters": 0,
+      "hasPrivateBeach": true
+    }
+  },
+  {
+    "id": "prop-003",
+    "title": "Mansión Palazzo Reale El Poblado",
+    "subtitle": "Residencia de ultralujo con helipuerto y spa",
+    "description": "Exclusiva propiedad contemporánea construida en las colinas con vistas de 360 grados sobre la ciudad.",
+    "type": "mansion",
+    "pricePerNight": 650,
+    "currency": "USD",
+    "location": {
+      "address": "Transversal Superior 18",
+      "city": "Medellín",
+      "state": "Antioquia",
+      "country": "Colombia",
+      "latitude": 6.208,
+      "longitude": -75.567
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "reviews": {
+      "rating": 4.98,
+      "reviewCount": 56
+    },
+    "tags": ["Superhost", "Piscina privada", "Rooftop", "Cancelación gratuita"],
+    "amenities": ["Spa Privado", "Sauna", "Cine en Casa", "Mayordomo 24/7", "Gimnasio"],
+    "capacity": {
+      "maxGuests": 12,
+      "bedrooms": 6,
+      "beds": 8,
+      "bathrooms": 7
+    },
+    "isAvailable": true,
+    "featuredAttr": {
+      "hasHelipad": true,
+      "squareMeters": 950
+    }
+  },
+  {
+    "id": "prop-004",
+    "title": "Penthouse SkyLine Chapinero Alto",
+    "subtitle": "Loft moderno con terraza privada y fireplace",
+    "description": "Ubicado en el corazón financiero y gastronómico de la ciudad, decorado por diseñadores locales de renombre.",
+    "type": "urban",
+    "pricePerNight": 115,
+    "currency": "USD",
+    "location": {
+      "address": "Carrera 4 # 65-20",
+      "city": "Bogotá",
+      "state": "Cundinamarca",
+      "country": "Colombia",
+      "latitude": 4.648,
+      "longitude": -74.056
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80"
+    ],
+    "reviews": {
+      "rating": 4.91,
+      "reviewCount": 210
+    },
+    "tags": ["Superhost", "Rooftop", "Pet Friendly"],
+    "amenities": ["Fibra Óptica 500MB", "Zona de Trabajo", "Balcón Panorámico", "Ascensor Privado"],
+    "capacity": {
+      "maxGuests": 3,
+      "bedrooms": 1,
+      "beds": 2,
+      "bathrooms": 2
+    },
+    "isAvailable": true,
+    "featuredAttr": {
+      "floorNumber": 14,
+      "workspaceAvailable": true
+    }
+  },
+  {
+    "id": "prop-005",
+    "title": "Domos Geodésicos Starlight Reserve",
+    "subtitle": "Glamping de lujo con telescopio y catamarán sobre lago",
+    "description": "Viva la experiencia inolvidable de dormir bajo las estrellas con la máxima comodidad y elegancia.",
+    "type": "glamping",
+    "pricePerNight": 185,
+    "currency": "USD",
+    "location": {
+      "address": "Vereda La Esmeralda",
+      "city": "Guatavita",
+      "state": "Cundinamarca",
+      "country": "Colombia",
+      "latitude": 4.933,
+      "longitude": -73.833
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=800&q=80"
+    ],
+    "reviews": {
+      "rating": 4.97,
+      "reviewCount": 98
+    },
+    "tags": ["Superhost", "Vista a la montaña", "Jacuzzi privado"],
+    "amenities": ["Telescopio Profesional", "Desayuno Artesanal Incluido", "Jacuzzi Climatizado", "Kayak"],
+    "capacity": {
+      "maxGuests": 2,
+      "bedrooms": 1,
+      "beds": 1,
+      "bathrooms": 1
+    },
+    "isAvailable": true,
+    "featuredAttr": {
+      "domeDiameterMeters": 7,
+      "hasStargazingRoof": true
+    }
+  },
+  {
+    "id": "prop-006",
+    "title": "Casa del Árbol Canopy Eco-Lodge",
+    "subtitle": "Sumergida en el dosel de la selva tropical",
+    "description": "Una joya de arquitectura sostenible suspendida a 15 metros de altura sobre árboles ancestrales.",
+    "type": "treehouse",
+    "pricePerNight": 160,
+    "currency": "USD",
+    "location": {
+      "address": "Reserva Natural Palomino",
+      "city": "Palomino",
+      "state": "La Guajira",
+      "country": "Colombia",
+      "latitude": 11.250,
+      "longitude": -73.567
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "reviews": {
+      "rating": 4.89,
+      "reviewCount": 63
+    },
+    "tags": ["Superhost", "Pet Friendly", "Cancelación gratuita"],
+    "amenities": ["Energía Solar", "Hamacas de Lujo", "Ducha al Aire Libre", "Avistamiento de Aves"],
+    "capacity": {
+      "maxGuests": 2,
+      "bedrooms": 1,
+      "beds": 1,
+      "bathrooms": 1
+    },
+    "isAvailable": true,
+    "featuredAttr": {
+      "heightMeters": 15,
+      "isEcoCertified": true
+    }
+  }
+]
